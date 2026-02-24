@@ -7,6 +7,6 @@ class PreliumPartnerNotesCategory(models.Model):
 
     name = fields.Char(string='Nom de la categorie', required=True)
 
-    _sql_constraints = [
-        ('name_uniq', 'unique (name)', 'Le nom de la categorie doit etre unique !')
-    ]
+    _constraint_name_uniq = models.Constraint(
+        'unique (name)', 'Le nom de la categorie doit etre unique !'
+    )

@@ -70,13 +70,12 @@
                 <separator/>
                 <filter string="Ouvertes/En cours" name="active_notes" domain="[('state', 'in', ('open', 'in_progress'))]"/>
                 <filter string="Urgentes" name="urgent_notes" domain="[('priority', '=', '2')]"/>
-                <group expand="0" string="Group By">
-                    <filter string="Partenaire" name="group_partner" context="{'group_by': 'partner_id'}"/>
-                    <filter string="Categorie" name="group_category" context="{'group_by': 'category_id'}"/>
-                    <filter string="Priorite" name="group_priority" context="{'group_by': 'priority'}"/>
-                    <filter string="Statut" name="group_state" context="{'group_by': 'state'}"/>
-                    <filter string="Responsable" name="group_user" context="{'group_by': 'user_id'}"/>
-                </group>
+                <separator/>
+                <filter string="Partenaire" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                <filter string="Categorie" name="group_category" context="{'group_by': 'category_id'}"/>
+                <filter string="Priorite" name="group_priority" context="{'group_by': 'priority'}"/>
+                <filter string="Statut" name="group_state" context="{'group_by': 'state'}"/>
+                <filter string="Responsable" name="group_user" context="{'group_by': 'user_id'}"/>
             </search>
         </field>
     </record>

@@ -23,7 +23,6 @@ class PreliumPartnerNotesNote(models.Model):
         ('closed', 'Cloturee')
     ], string='Statut', required=True, default='open', tracking=True)
 
-    _sql_constraints = []
 
     def action_set_in_progress(self):
         """Met la note en cours d'avancement."""
