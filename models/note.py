@@ -10,10 +10,10 @@ class PreliumPartnerNotesNote(models.Model):
     content = fields.Html(string='Contenu explicatif', required=True)
     date = fields.Date(string='Date', required=True, default=fields.Date.context_today, tracking=True)
     priority = fields.Selection([
-        ('normal', 'Normale'),
-        ('high', 'Haute'),
-        ('urgent', 'Urgente')
-    ], string='Priorite', required=True, default='normal', tracking=True)
+        ('0', 'Normale'),
+        ('1', 'Haute'),
+        ('2', 'Urgente')
+    ], string='Priorite', required=True, default='0', tracking=True)
     category_id = fields.Many2one('prelium_partner_notes.category', string='Categorie', required=True, tracking=True)
     partner_id = fields.Many2one('res.partner', string='Partenaire', required=True, tracking=True)
     user_id = fields.Many2one('res.users', string='Responsable', default=lambda self: self.env.uid, tracking=True)

@@ -26,8 +26,8 @@
         <field name="arch" type="xml">
             <form string="Note">
                 <header>
-                    <button name="action_set_in_progress" string="En cours" type="object" state="open" class="oe_highlight" invisible="state != 'open'"/>
-                    <button name="action_set_closed" string="Cloturer" type="object" state="in_progress" class="oe_highlight" invisible="state != 'in_progress'"/>
+                    <button name="action_set_in_progress" string="En cours" type="object" class="oe_highlight" invisible="state != 'open'"/>
+                    <button name="action_set_closed" string="Cloturer" type="object" class="oe_highlight" invisible="state != 'in_progress'"/>
                     <field name="state" widget="statusbar" statusbar_visible="open,in_progress,closed"/>
                 </header>
                 <sheet>
@@ -69,7 +69,7 @@
                 <filter string="Mes notes" name="my_notes" domain="[('user_id', '=', uid)]"/>
                 <separator/>
                 <filter string="Ouvertes/En cours" name="active_notes" domain="[('state', 'in', ('open', 'in_progress'))]"/>
-                <filter string="Urgentes" name="urgent_notes" domain="[('priority', '=', 'urgent')]"/>
+                <filter string="Urgentes" name="urgent_notes" domain="[('priority', '=', '2')]"/>
                 <group expand="0" string="Group By">
                     <filter string="Partenaire" name="group_partner" context="{'group_by': 'partner_id'}"/>
                     <filter string="Categorie" name="group_category" context="{'group_by': 'category_id'}"/>
