@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_prelium_partner_notes_root" name="Notes Partenaires" action="action_prelium_partner_notes_note" sequence="50"/>
+    
+    <menuitem id="menu_prelium_partner_notes_note" name="Notes" parent="menu_prelium_partner_notes_root" action="action_prelium_partner_notes_note" sequence="10"/>
+    
+    <menuitem id="menu_prelium_partner_notes_config" name="Configuration" parent="menu_prelium_partner_notes_root" sequence="100" groups="base.group_system"/>
+    
+    <menuitem id="menu_prelium_partner_notes_category" name="Categories" parent="menu_prelium_partner_notes_config" action="action_prelium_partner_notes_category" sequence="10"/>
+</odoo>

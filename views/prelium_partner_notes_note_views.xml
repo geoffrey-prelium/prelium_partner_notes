@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_prelium_partner_notes_note_list" model="ir.ui.view">
+        <field name="name">prelium.partner.notes.note.list</field>
+        <field name="model">prelium_partner_notes.note</field>
+        <field name="arch" type="xml">
+            <list string="Notes">
+                <field name="name" string="Titre de la note"/>
+                <field name="partner_id" string="Partenaire"/>
+                <field name="category_id" string="Categorie"/>
+                <field name="user_id" string="Responsable"/>
+                <field name="date" string="Date"/>
+                <field name="priority" string="Priorite"/>
+                <field name="state" string="Statut" 
+                       widget="badge" 
+                       decoration-info="state == 'open'" 
+                       decoration-warning="state == 'in_progress'" 
+                       decoration-success="state == 'closed'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_prelium_partner_notes_note_form" model="ir.ui.view">
+        <field name="name">prelium.partner.notes.note.form</field>
+        <field name="model">prelium_partner_notes.note</field>
+        <field name="arch" type="xml">
+            <form string="Note">
+                <header>
+                    <button name="action_set_in_progress" string="En cours" type="object" state="open" class="oe_highlight" invisible="state != 'open'"/>
+                    <button name="action_set_closed" string="Cloturer" type="object" state="in_progress" class="oe_highlight" invisible="state != 'in_progress'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="open,in_progress,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Titre de la note..." string="Titre"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" string="Partenaire"/>
+                            <field name="category_id" string="Categorie"/>
+                        </group>
+                        <group>
+                            <field name="date" string="Date"/>
+                            <field name="user_id" string="Responsable"/>
+                            <field name="priority" string="Priorite" widget="priority"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Contenu" name="content">
+                            <field name="content" string="Contenu explicatif"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_prelium_partner_notes_note_search" model="ir.ui.view">
+        <field name="name">prelium.partner.notes.note.search</field>
+        <field name="model">prelium_partner_notes.note</field>
+        <field name="arch" type="xml">
+            <search string="Notes">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <filter string="Mes notes" name="my_notes" domain="[('user_id', '=', uid)]"/>
+                <separator/>
+                <filter string="Ouvertes/En cours" name="active_notes" domain="[('state', 'in', ('open', 'in_progress'))]"/>
+                <filter string="Urgentes" name="urgent_notes" domain="[('priority', '=', 'urgent')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Partenaire" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Categorie" name="group_category" context="{'group_by': 'category_id'}"/>
+                    <filter string="Priorite" name="group_priority" context="{'group_by': 'priority'}"/>
+                    <filter string="Statut" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Responsable" name="group_user" context="{'group_by': 'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_prelium_partner_notes_note" model="ir.actions.act_window">
+        <field name="name">Notes</field>
+        <field name="res_model">prelium_partner_notes.note</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_prelium_partner_notes_note_search"/>
+        <field name="context">{'search_default_active_notes': 1}</field>
+    </record>
+</odoo>
